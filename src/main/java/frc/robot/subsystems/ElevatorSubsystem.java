@@ -18,7 +18,7 @@ public class ElevatorSubsystem  extends SubsystemBase{
     private final PIDController pid;
 
     public ElevatorSubsystem() {
-        motor = new WPI_VictorSPX(0);
+        motor = new WPI_VictorSPX(5);
 
 
         motor.configFactoryDefault();
