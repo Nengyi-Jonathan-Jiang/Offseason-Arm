@@ -28,7 +28,7 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
-    opieiroufyih.setDefaultCommand(new ElevatorCommand(opieiroufyih));
+    opieiroufyih.setDefaultCommand(new ElevatorCommand(opieiroufyih,0, oi));
     configureButtonBindings();
     
 
