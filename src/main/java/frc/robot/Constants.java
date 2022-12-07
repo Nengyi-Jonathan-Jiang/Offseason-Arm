@@ -15,8 +15,19 @@ import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    public static final double DEADZONE_VALUE = 0.01;
+	
+	public static final double DEADZONE_VALUE = 0.01;
 	public static final int NUMBER_OF_CONTROLLERS = 2;
+	
+	public static final int ARM_MOTOR_ID = 0;
+	public static final int WRIST_MOTOR_ID = 1;
+	
+	public static final int ARM_MOTOR_ENCODER = 2;
+	public static final int WRIST_MOTOR_ENCODER = 3;
+	
+	public static final int INTAKE_MOTOR_ID = 4;
+	public static final int ELEVATOR_MOTOR_ID = 5;
+	
 
     public enum Axes {
 		LEFT_STICK_X(0), LEFT_STICK_Y(4), LEFT_TRIGGER(2), RIGHT_TRIGGER(3), RIGHT_STICK_X(1), RIGHT_STICK_Y(5);
