@@ -6,56 +6,44 @@ import com.ctre.phoenix.sensors.CANCoder;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.OI;
 
-public class ArmSubsystem extends SubsystemBase{
+public class ArmSubsystem extends SubsystemBase {
     private final WPI_VictorSPX armMotor;
-    private final WPI_VictorSPX armMotor2;
-    private final PIDController pid;
-    private final PIDController pid2;
-    private final CANCoder encoder;
-    private final CANCoder encoder2;
-    private double voltage;
-    private double voltage2;
+    private final WPI_VictorSPX wristMotor;
+    private final PIDController armPID;
+    private final PIDController wristPID;
+    private final CANCoder armEncoder;
+    private final CANCoder wristEncoder;
 
     public ArmSubsystem() {
         armMotor = new WPI_VictorSPX(0);
-        armMotor2 = new WPI_VictorSPX(1);
+        wristMotor = new WPI_VictorSPX(1);
         armMotor.configFactoryDefault();
-        armMotor2.configFactoryDefault();
+        wristMotor.configFactoryDefault();
         armMotor.setNeutralMode(NeutralMode.Brake);
-        armMotor2.setNeutralMode(NeutralMode.Brake);
-        pid = new PIDController(0, 0, 0);
-        pid2 = new PIDController(0,0,0);
-        encoder = new CANCoder(2);
-        encoder2 = new CANCoder(3);
+        wristMotor.setNeutralMode(NeutralMode.Brake);
+        armPID = new PIDController(0, 0, 0);
+        wristPID = new PIDController(0,0,0);
+        armEncoder = new CANCoder(2);
+        wristEncoder = new CANCoder(3);
         
     }
     @Override
     public void periodic() {
-        double rawAngle = encoder.getPosition();
-        double rawAngle2 = encoder2.getPosition();
-        double angle = (rawAngle % (2*Math.PI) + (2*Math.PI))%(2*Math.PI);
-        double angle2 = (rawAngle2 % (2*Math.PI) + (2*Math.PI))%(2*Math.PI);
-        voltage = pid.calculate(angle);
-        voltage2 = pid.calculate(angle2);
+        double rawAngle = armEncoder.getPosition();
+        double rawAngle2 = wristEncoder.getPosition();
+        double angle = rawAngle;
+        double angle2 = rawAngle2;
+        double voltage = armPID.calculate(angle);
+        double voltage2 = armPID.calculate(angle2);
         armMotor.set(voltage);
-        armMotor2.set(voltage2);
+        wristMotor.set(voltage2);
 
     }
     public void setArmAngle(double angle) {
-        pid.setSetpoint(angle);
+        armPID.setSetpoint(angle);
     }
     public void setLowerArmAngle(double angle) {
-        pid2.setSetpoint(angle);
+        wristPID.setSetpoint(angle);
     }
-    public void stop() {
-        pid.setSetpoint(pid.calculate(voltage));
-        pid2.setSetpoint(pid2.calculate(voltage2));
-        //armMotor.stopMotor();
-        //armMotor2.stopMotor();
-    }
-
-    
-    
 }
