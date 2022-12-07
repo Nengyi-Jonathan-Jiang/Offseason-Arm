@@ -7,6 +7,8 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.OI;
+import frc.robot.Constants;
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
@@ -14,6 +16,9 @@ import edu.wpi.first.wpilibj2.command.Command;
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
+  private final ArmSubsystem arm;
+  private final IntakeSubsystem a;
+
   // The robot's subsystems and commands are defined here...
   private final OI oi = new OI();
 
@@ -21,6 +26,7 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
+
   }
 
   /**
@@ -30,7 +36,10 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    
+    oi.getAxis(0,Constants.Axes.LEFT_STICK_Y).whenHeld(new ArmCommand(arm));
+    oi.getAxis(0,Constants.Axes.RIGHT_STICK_Y).whenHeld(new ArmCommand(arm));
+    oi.getButton(0,Constants.Buttons.X_BUTTON).whenHeld(new IntakeCommand(a));
+    oi.getButton(0,Constants.Buttons.Y_BUTTON).whenHeld(new OuttakeCommand(a));
   }
 
   /**
