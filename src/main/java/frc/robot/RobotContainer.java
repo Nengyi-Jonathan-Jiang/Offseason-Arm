@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.OI;
+import frc.robot.subsystems.ArmSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.Constants;
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -16,8 +18,8 @@ import frc.robot.Constants;
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-  private final ArmSubsystem arm;
-  private final IntakeSubsystem a;
+  private final ArmSubsystem armSubsystem = new ArmSubsystem();
+  private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
 
   // The robot's subsystems and commands are defined here...
   private final OI oi = new OI();
@@ -36,10 +38,10 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    oi.getAxis(0,Constants.Axes.LEFT_STICK_Y).whenHeld(new ArmCommand(arm));
-    oi.getAxis(0,Constants.Axes.RIGHT_STICK_Y).whenHeld(new ArmCommand(arm));
-    oi.getButton(0,Constants.Buttons.X_BUTTON).whenHeld(new IntakeCommand(a));
-    oi.getButton(0,Constants.Buttons.Y_BUTTON).whenHeld(new OuttakeCommand(a));
+    oi.getAxis(0,Constants.Axes.LEFT_STICK_Y).whenHeld(new ArmCommand(armSubsystem));
+    oi.getAxis(0,Constants.Axes.RIGHT_STICK_Y).whenHeld(new ArmCommand(armSubsystem));
+    oi.getButton(0,Constants.Buttons.X_BUTTON).whenHeld(new IntakeCommand(intakeSubsystem));
+    oi.getButton(0,Constants.Buttons.Y_BUTTON).whenHeld(new OuttakeCommand(intakeSubsystem));
   }
 
   /**
