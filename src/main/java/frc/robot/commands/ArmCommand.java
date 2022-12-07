@@ -5,27 +5,31 @@ import frc.robot.OI;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.Constants;
 
-public class ArmCommand extends CommandBase{
-    private final ArmSubsystem a;
-    private final OI oily;
+public class ArmCommand extends CommandBase {
+    private final ArmSubsystem armSubsystem;
+    private final OI oi;
 
     public ArmCommand(ArmSubsystem a, OI oily) {
-        this.a = a;
-        this.oily = oily;
+        this.armSubsystem = a;
+        this.oi = oily;
         addRequirements(a);
     }
+    
+    @Override
     public void initialize() {
-        a.stop();
     }
+    
+    @Override
     public void execute() {
-        double val1 = oily.getAxis(0, Constants.Axes.LEFT_STICK_X);
-        double val2 = oily.getAxis(0, Constants.Axes.LEFT_STICK_Y);
-        a.setArmAngle(val1);
-        a.setLowerArmAngle(val2);
+        double val1 = oi.getAxis(0, Constants.Axes.LEFT_STICK_Y);
+        double val2 = oi.getAxis(0, Constants.Axes.RIGHT_STICK_Y);
+        armSubsystem.setArmAngle(val1);
+        armSubsystem.setLowerArmAngle(val2);
     }
-    public void end() {
-        a.stop();
-    }
+    @Override
+    public void end(boolean interrupted) {}
+    
+    @Override
     public boolean isFinished() {
         return false;
     }
