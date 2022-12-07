@@ -16,16 +16,16 @@ public class ArmSubsystem extends SubsystemBase {
     private final CANCoder wristEncoder;
 
     public ArmSubsystem() {
-        armMotor = new WPI_VictorSPX(0);
-        wristMotor = new WPI_VictorSPX(1);
+        armMotor = new WPI_VictorSPX(Constants.ARM_MOTOR_ID);
+        wristMotor = new WPI_VictorSPX(Constants.WRIST_MOTOR_ID);
         armMotor.configFactoryDefault();
         wristMotor.configFactoryDefault();
         armMotor.setNeutralMode(NeutralMode.Brake);
         wristMotor.setNeutralMode(NeutralMode.Brake);
         armPID = new PIDController(0, 0, 0);
         wristPID = new PIDController(0,0,0);
-        armEncoder = new CANCoder(2);
-        wristEncoder = new CANCoder(3);
+        armEncoder = new CANCoder(Constants.INTAKE_MOTOR_ID);
+        wristEncoder = new CANCoder(Constants.ELEVATOR_MOTOR_ID);
         
     }
     @Override
