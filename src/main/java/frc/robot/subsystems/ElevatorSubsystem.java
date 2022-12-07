@@ -25,7 +25,7 @@ public class ElevatorSubsystem  extends SubsystemBase{
 
         motor.setNeutralMode(NeutralMode.Brake);
 
-        encoder = new CANCoder(Constants.ElevatorEncoder);
+        encoder = new CANCoder(Constants.ELEVATOR_ENCODER);
         pid = new PIDController(0.01, 0, 0);
     }
 
