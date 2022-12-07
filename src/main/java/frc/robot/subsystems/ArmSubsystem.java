@@ -6,6 +6,7 @@ import com.ctre.phoenix.sensors.CANCoder;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 public class ArmSubsystem extends SubsystemBase {
     private final WPI_VictorSPX armMotor;
@@ -25,7 +26,7 @@ public class ArmSubsystem extends SubsystemBase {
         armPID = new PIDController(0, 0, 0);
         wristPID = new PIDController(0,0,0);
         armEncoder = new CANCoder(Constants.INTAKE_MOTOR_ID);
-        wristEncoder = new CANCoder(Constants.ELEVATOR_MOTOR_ID);
+        wristEncoder = new CANCoder(Constants.WRIST_MOTOR_ENCODER);
         
     }
     @Override
