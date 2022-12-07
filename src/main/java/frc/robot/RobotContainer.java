@@ -8,7 +8,12 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.OI;
+import frc.robot.commands.ArmCommand;
+import frc.robot.commands.ElevatorCommand;
+import frc.robot.commands.IntakeCommand;
+import frc.robot.commands.OuttakeCommand;
 import frc.robot.subsystems.ArmSubsystem;
+import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.Constants;
 /**
@@ -20,7 +25,7 @@ import frc.robot.Constants;
 public class RobotContainer {
   private final ArmSubsystem armSubsystem = new ArmSubsystem();
   private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
-  private final ElevatorSubsystem opieiroufyih = new ElevatorSubsystem();
+  private final ElevatorSubsystem elevatorSubsystem = new ElevatorSubsystem();
 
   // The robot's subsystems and commands are defined here...
   private final OI oi = new OI();
@@ -28,10 +33,9 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
-    opieiroufyih.setDefaultCommand(new ElevatorCommand(opieiroufyih,0, oi));
+    elevatorSubsystem.setDefaultCommand(new ElevatorCommand(elevatorSubsystem,0, oi));
+    armSubsystem.setDefaultCommand(new ArmCommand(armSubsystem, oi));
     configureButtonBindings();
-    
-
   }
 
   /**
@@ -41,8 +45,6 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    oi.getAxis(0,Constants.Axes.LEFT_STICK_Y).whenHeld(new ArmCommand(armSubsystem));
-    oi.getAxis(0,Constants.Axes.RIGHT_STICK_Y).whenHeld(new ArmCommand(armSubsystem));
     oi.getButton(0,Constants.Buttons.X_BUTTON).whenHeld(new IntakeCommand(intakeSubsystem));
     oi.getButton(0,Constants.Buttons.Y_BUTTON).whenHeld(new OuttakeCommand(intakeSubsystem));
   }
