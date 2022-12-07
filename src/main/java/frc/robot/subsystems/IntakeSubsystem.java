@@ -9,7 +9,7 @@ public class IntakeSubsystem extends SubsystemBase {
     private WPI_VictorSPX intakeMotor;
     
     public IntakeSubsystem(){
-        intakeMotor = new WPI_VictorSPX(4);
+        intakeMotor = new WPI_VictorSPX(Constants.INTAKE_MOTOR_ID);
         intakeMotor.configFactoryDefault();
         intakeMotor.setNeutralMode(NeutralMode.Brake);
     }
