@@ -20,6 +20,7 @@ import frc.robot.Constants;
 public class RobotContainer {
   private final ArmSubsystem armSubsystem = new ArmSubsystem();
   private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
+  private final ElevatorSubsystem opieiroufyih = new ElevatorSubsystem();
 
   // The robot's subsystems and commands are defined here...
   private final OI oi = new OI();
@@ -27,7 +28,9 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
+    opieiroufyih.setDefaultCommand(new ElevatorCommand(opieiroufyih));
     configureButtonBindings();
+    
 
   }
 
