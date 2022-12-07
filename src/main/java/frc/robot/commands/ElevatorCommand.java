@@ -21,15 +21,17 @@ public class ElevatorCommand  extends CommandBase{
 
     @Override
     public void initialize() {
+        elevSub.setPosition(0);
+    }
+
+    @Override
+    public void execute() {
         elevSub.setPosition(setPoint);
     }
 
     @Override
-    public void execute() {}
-
-    @Override
     public void end(boolean interrupted) {
-        
+        elevSub.setPosition(0);
     }
     @Override
     public boolean isFinished() {
