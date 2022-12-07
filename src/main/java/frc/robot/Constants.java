@@ -28,6 +28,8 @@ public final class Constants {
 	public static final int INTAKE_MOTOR_ID = 4;
 	public static final int ELEVATOR_MOTOR_ID = 5;
 	
+	public static final int ELEVATOR_MOTOR_ENCODER = 6;
+	
 
     public enum Axes {
 		LEFT_STICK_X(0), LEFT_STICK_Y(4), LEFT_TRIGGER(2), RIGHT_TRIGGER(3), RIGHT_STICK_X(1), RIGHT_STICK_Y(5);
