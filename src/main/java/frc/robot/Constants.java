@@ -18,24 +18,6 @@ public final class Constants {
     public static final double DEADZONE_VALUE = 0.01;
 	public static final int NUMBER_OF_CONTROLLERS = 2;
 
-	public static final int TURRET_MOTOR_ID = 1;
-	public static final int LEFT_CLIMBER_MOTOR_ID = 2;
-	public static final int RIGHT_CLIMBER_MOTOR_ID = 3;
-
-	public static final int INTAKE_MOTOR_ID = 4;
-	public static final int FEEDER_MOTOR_ID = 5;
-
-	public static final int JUMP_MOTOR_ID = 6;
-
-	public static final int CLIMBER_SOLENOID_CHANNEL = 1;
-	public static final int INTAKE_SOLENOID_CHANNEL = 2;
-	
-	public static final int JUMP_SOLENOID_CHANNEL = 3;
-
-	public static final double RIGHT_CLIMBER_SPEED_CORRECTION = 0.75;
-    public static final int ELEVATOR_MOTOR_ID = 0;
-    public static final int ELEVATOR_ENCODER = 0;
-
     public enum Axes {
 		LEFT_STICK_X(0), LEFT_STICK_Y(4), LEFT_TRIGGER(2), RIGHT_TRIGGER(3), RIGHT_STICK_X(1), RIGHT_STICK_Y(5);
 
