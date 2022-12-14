@@ -8,8 +8,13 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.OI;
+import frc.robot.Commands.ArmCommand;
 import frc.robot.Commands.ElevatorCommand;
+import frc.robot.Commands.IntakeCommand;
+import frc.robot.Commands.OuttakeCommand;
+import frc.robot.Subsystem.ArmSubsystem;
 import frc.robot.Subsystem.ElevatorSubsystem;
+import frc.robot.Subsystem.IntakeSubsystem;
 import frc.robot.Constants;
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -28,10 +33,7 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     elevator.setDefaultCommand(new ElevatorCommand(elevator,1.0));
-    arm.setDefaultCommand(new OuttakeCommand(oi, arm));
-    intake.setDefaultCommand(new IntakeCommand(oi, intake));
-    intake.setDefaultCommand(new OuttakeCommand(oi, intake));
-    arm.setDefaultCommand(new FixedArmCommand(intake));
+    arm.setDefaultCommand(new ArmCommand(oi, arm));
 
     configureButtonBindings();
   }
@@ -46,9 +48,10 @@ public class RobotContainer {
     oi.getButton(1, Constants.Buttons.X_BUTTON).whenHeld(new ElevatorCommand(elevator, 1.0));
     oi.getButton(2, Constants.Buttons.Y_BUTTON).whenHeld(new ElevatorCommand(elevator, 1.0));
 
+    oi.getButton(2, Constants.Buttons.Y_BUTTON).whenHeld(new IntakeCommand(intake));
+    oi.getButton(2, Constants.Buttons.Y_BUTTON).whenHeld(new OuttakeCommand(intake));
 
-    oi.getAxis(1, Constants.Axes.LEFT_STICK_Y).whenHeld(new ArmCommand(oi, arm));
-    oi.getAxis(1, Constants.Axes.RIGHT_STICK_Y).whenHeld(new ArmCommand(oi, arm));
+
  
     
   }
